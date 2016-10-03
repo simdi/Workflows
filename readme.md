@@ -1,3 +1,3 @@
 # Workflows course
 
-This project is an example on workflow.
+This is me learning gulp, git , and browserify from lynda.com

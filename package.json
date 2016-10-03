@@ -1,0 +1,10 @@
+{
+  "name": "mygulp",
+  "version": "0.0.1",
+  "description": "This is my first gulp task",
+  "repository": {
+    "type": "git",
+    "url": "?.git"
+  },
+  "author": "Ezeanieto Chisimdi Damian"
+}

@@ -2,6 +2,7 @@ var gulp        = require('gulp'),
     gUtil       = require('gulp-util'),
     coffee      = require('gulp-coffee'),
     browserify  = require('gulp-browserify'),
+    compass     = require('gulp-compass'),
     concat      = require('gulp-concat');
 
 var coffeeSources = ['components/coffee/tagline.coffee'],
@@ -10,14 +11,14 @@ var coffeeSources = ['components/coffee/tagline.coffee'],
         'components/scripts/pixgrid.js',
         'components/scripts/tagline.js',
         'components/scripts/template.js'
-    ];
+    ],
+    sassSources = ['components/sass/style.scss'];
 
 gulp.task('coffee', function() {
     gulp.src(coffeeSources)
-        .pipe(coffee({bare: true})
+        .pipe(coffee({ bare: true })
             .on('error', gUtil.log))
-        .pipe(gulp.dest('components/scripts')
-    )
+        .pipe(gulp.dest('components/scripts'));
 });
 
 gulp.task('js', function() {
@@ -26,3 +27,15 @@ gulp.task('js', function() {
         .pipe(browserify())
         .pipe(gulp.dest('builds/development/js'));
 });
+
+gulp.task('compass', function() {
+    gulp.src(sassSources)
+        .pipe(compass({
+            sass: 'components/sass',
+            image: 'builds/development/images',
+            style: 'expanded'
+        }).on('error', gUtil.log))
+        .pipe(gulp.dest('builds/development/css'));
+});
+
+gulp.task('default', ['coffee', 'js', 'compass']);
